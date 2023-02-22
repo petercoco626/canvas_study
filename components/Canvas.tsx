@@ -1,4 +1,7 @@
 import { useEffect, useRef } from "react";
+import animate from "utils/animate";
+import generateParticle from "utils/generateParticle";
+import genrateRandomNumber from "utils/genrateRandomNumber";
 import Particle from "utils/Particle";
 import styles from "./Canvas.module.css";
 
@@ -11,8 +14,8 @@ function Canvas() {
     console.log(window.devicePixelRatio); // 1
     const ctx = canvasRef.current.getContext("2d");
     const dpr = window.devicePixelRatio;
-    const canvasWidth = 300;
-    const canvasHeight = 300;
+    const canvasWidth = window.innerWidth;
+    const canvasHeight = window.innerHeight;
     canvasRef.current.style.width = canvasWidth + "px";
     canvasRef.current.style.height = canvasHeight + "px";
 
@@ -23,26 +26,19 @@ function Canvas() {
     if (ctx) {
       // scale을 곱함.
       ctx.scale(dpr, dpr);
-      // ctx?.fillRect(10, 10, 50, 50);
 
-      const circle1 = new Particle(100, 100, 50);
-      // circle1.draw(ctx);
-      // animate(ctx, circle1);
+      const fps = {
+        interval: 1000 / 60,
+        now: 0,
+        delta: 0,
+        then: Date.now(),
+      };
+
+      const paricles = generateParticle({ count: 50, maxX: canvasWidth });
+
+      animate(ctx, paricles, fps, canvasRef);
     }
   }, []);
-
-  function animate(ctx: CanvasRenderingContext2D, shape: Particle) {
-    if (!canvasRef.current) return;
-    window.requestAnimationFrame(() => animate(ctx, shape));
-    ctx.clearRect(
-      0,
-      0,
-      canvasRef.current.clientWidth,
-      canvasRef.current.clientHeight
-    );
-    shape.draw(ctx);
-    console.log("drawing...");
-  }
 
   return <canvas ref={canvasRef} className={styles.canvas}></canvas>;
 }
