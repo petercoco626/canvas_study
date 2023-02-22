@@ -27,16 +27,9 @@ function Canvas() {
       // scale을 곱함.
       ctx.scale(dpr, dpr);
 
-      const fps = {
-        interval: 1000 / 60,
-        now: 0,
-        delta: 0,
-        then: Date.now(),
-      };
-
       const paricles = generateParticle({ count: 50, maxX: canvasWidth });
 
-      animate(ctx, paricles, fps, canvasRef);
+      animate(ctx, paricles, canvasRef);
     }
   }, []);
 
