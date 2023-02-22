@@ -45,6 +45,7 @@ function Canvas() {
     canvasRef.current.width = canvasWidth * dpr;
     canvasRef.current.height = canvasHeight * dpr;
 
+    //
     // scale을 곱함.
     ctx?.scale(dpr, dpr);
     ctx?.fillRect(10, 10, 50, 50);
