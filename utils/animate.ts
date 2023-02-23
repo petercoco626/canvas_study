@@ -3,7 +3,7 @@ import genrateRandomNumber from "./genrateRandomNumber";
 import Particle from "./Particle";
 
 const fps = {
-  interval: 1000 / 60, // 뭔가 공식이 이상함. interval을 낮추면 깜박여도 내려가는 속도는 똑같아야하는데 말이지...
+  interval: 1000 / 50, // 뭔가 공식이 이상함. interval을 낮추면 깜박여도 내려가는 속도는 똑같아야하는데 말이지...
   now: 0,
   delta: 0,
   then: Date.now(),

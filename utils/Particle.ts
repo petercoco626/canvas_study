@@ -3,14 +3,17 @@ class Particle {
   y: number;
   radius: number;
   vy: number;
+  acc: number;
   constructor(x: number, y: number, radius: number, vy: number) {
     this.x = x;
     this.y = y;
     this.radius = radius;
     this.vy = vy;
+    this.acc = 1.02;
   }
 
   update() {
+    this.vy *= this.acc;
     this.y += this.vy;
   }
 
