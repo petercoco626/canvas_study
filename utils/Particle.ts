@@ -20,7 +20,7 @@ class Particle {
   draw(ctx: CanvasRenderingContext2D) {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.radius, 0, (Math.PI / 180) * 360); // 각도는 radian임.
-    ctx.fillStyle = "white";
+    ctx.fillStyle = "orange";
     ctx.fill();
     ctx.closePath();
   }

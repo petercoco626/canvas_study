@@ -33,7 +33,27 @@ function Canvas() {
     }
   }, []);
 
-  return <canvas ref={canvasRef} className={styles.canvas}></canvas>;
+  return (
+    <>
+      <canvas ref={canvasRef} className={styles.canvas}></canvas>
+      <svg>
+        <defs>
+          <filter id="gooey">
+            <feGaussianBlur
+              in="SourceGraphic"
+              stdDeviation="10"
+              result="blur1"
+            />
+            <feColorMatrix
+              in="blur1"
+              mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 100 -23"
+            />
+          </filter>
+        </defs>
+      </svg>
+    </>
+  );
 }
 
 export default Canvas;

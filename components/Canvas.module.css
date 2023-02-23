@@ -1,5 +1,5 @@
 .canvas {
-  background-color: black;
-  /* width: 300px; */
-  /* height: 300px; */
+  filter: url("#gooey");
+  /* filter: blur(10px) contrast(10); */
+  /* background-color: black; */
 }
