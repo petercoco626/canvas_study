@@ -11,11 +11,9 @@ const fps = {
 
 export default function animate(
   ctx: CanvasRenderingContext2D,
-  particles: Particle[],
-  canvasRef: RefObject<HTMLCanvasElement>
+  particles: Particle[]
 ) {
-  if (!canvasRef.current) return;
-  window.requestAnimationFrame(() => animate(ctx, particles, canvasRef));
+  window.requestAnimationFrame(() => animate(ctx, particles));
 
   fps.now = Date.now();
   fps.delta = fps.now - fps.then;
@@ -23,12 +21,7 @@ export default function animate(
   if (fps.delta < fps.interval) return;
 
   // clear를 안하면 기존화면에 덧칠해서 그려져서 쭈욱 흘러내리는것처럼 보인다..
-  ctx.clearRect(
-    0,
-    0,
-    canvasRef.current.clientWidth,
-    canvasRef.current.clientHeight
-  );
+  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
   particles.forEach((particle) => {
     particle.update();
