@@ -13,6 +13,7 @@ export default function Fireworks() {
     let canvas: Canvas;
     if (ctx) {
       canvas = new Canvas(ctx, canvasRef.current);
+      canvas.createParticles();
       canvas.render(ctx);
     }
 
@@ -27,5 +28,5 @@ export default function Fireworks() {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className={styles.canvas}></canvas>;
+  return <canvas ref={canvasRef}></canvas>;
 }

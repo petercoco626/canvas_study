@@ -1,3 +1,5 @@
+import Particle from "./particle";
+
 class Canvas {
   fps: {
     interval: number;
@@ -6,6 +8,7 @@ class Canvas {
     then: number;
   };
   dpr: number;
+  particles: Particle[];
 
   constructor(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) {
     this.fps = {
@@ -16,13 +19,22 @@ class Canvas {
     };
     this.dpr = window.devicePixelRatio;
     this.resize(ctx, canvas);
+    this.particles = [];
+  }
+
+  createParticles() {
+    const PARTICLE_NUM = 1;
+    for (let i = 0; i < PARTICLE_NUM; i++) {
+      const x = 300;
+      const y = 300;
+      this.particles.push(new Particle(x, y));
+    }
   }
 
   resize(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) {
     this.dpr = window.devicePixelRatio;
     canvas.width = window.innerWidth * this.dpr;
     canvas.height = window.innerHeight * this.dpr;
-    console.log(this.dpr);
     ctx.scale(this.dpr, this.dpr);
 
     canvas.style.width = window.innerWidth + "px";
@@ -40,8 +52,13 @@ class Canvas {
     this.fps.delta = this.fps.now - this.fps.then;
 
     if (this.fps.delta < this.fps.interval) return;
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    ctx.fillRect(100, 100, 100, 100);
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    // ctx.fillRect(100, 100, 100, 100);
+    this.particles.forEach((particle) => {
+      particle.update();
+      particle.draw(ctx);
+    });
   }
 }
 
