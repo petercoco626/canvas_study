@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import animate from "utils/animate";
-import generateParticle from "utils/generateParticle";
-import Particle from "utils/Particle";
+import animate from "utils/01/animate";
+import generateParticle from "utils/01/generateParticle";
+import Particle from "utils/01/Particle";
 import styles from "./Canvas.module.css";
 
 function Canvas() {
