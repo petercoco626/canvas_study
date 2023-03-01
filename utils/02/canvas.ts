@@ -19,8 +19,10 @@ class Canvas {
   }
 
   resize(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) {
+    this.dpr = window.devicePixelRatio;
     canvas.width = window.innerWidth * this.dpr;
     canvas.height = window.innerHeight * this.dpr;
+    console.log(this.dpr);
     ctx.scale(this.dpr, this.dpr);
 
     canvas.style.width = window.innerWidth + "px";
